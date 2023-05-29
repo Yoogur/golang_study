@@ -28,7 +28,7 @@ func rootHandler(w http.ResponseWriter, r *http.Request){
 	}
 	addr := r.RemoteAddr
 	ip := strings.Split(addr, ":")[0]
-	fmt.Printf("root %s %d", ip, status)
+	fmt.Printf("root %s %d\n", ip, status)
 }
 
 
