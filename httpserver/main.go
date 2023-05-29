@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"strings"
 )
 
 func init(){
@@ -25,6 +26,9 @@ func rootHandler(w http.ResponseWriter, r *http.Request){
 	for k, v := range r.Header {
 		io.WriteString(w, fmt.Sprintf("%s=%s\n", k, v))
 	}
+	addr := r.RemoteAddr
+	ip := strings.Split(addr, ":")[0]
+	fmt.Printf("root %s %d", ip, status)
 }
 
 
