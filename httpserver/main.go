@@ -21,6 +21,9 @@ func main(){
 }
 
 func rootHandler(w http.ResponseWriter, r *http.Request){
+	if r.RequestURI == "/facicon.ico" {
+		return
+	}
 	status := 200
 	w.WriteHeader(status)
 	for k, v := range r.Header {
