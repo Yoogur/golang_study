@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 )
 
@@ -20,15 +21,29 @@ func main(){
 	}
 }
 
+func getVersion() string{
+	version, ok := os.LookupEnv("VERSION")
+	if ok{
+		return version
+	}
+	return ""
+}
+
+
 func rootHandler(w http.ResponseWriter, r *http.Request){
 	if r.RequestURI == "/facicon.ico" {
 		return
 	}
 	status := 200
 	w.WriteHeader(status)
+
 	for k, v := range r.Header {
 		io.WriteString(w, fmt.Sprintf("%s=%s\n", k, v))
 	}
+
+	version := getVersion()
+	io.WriteString(w, version)
+
 	addr := r.RemoteAddr
 	ip := strings.Split(addr, ":")[0]
 	fmt.Printf("root %s %d\n", ip, status)
