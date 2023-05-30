@@ -42,7 +42,7 @@ func rootHandler(w http.ResponseWriter, r *http.Request){
 	}
 
 	version := getVersion()
-	io.WriteString(w, version)
+	io.WriteString(w, fmt.Sprintf("VERSION=%s\n", version))
 
 	addr := r.RemoteAddr
 	ip := strings.Split(addr, ":")[0]
