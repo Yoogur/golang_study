@@ -22,11 +22,7 @@ func main(){
 }
 
 func getVersion() string{
-	version, ok := os.LookupEnv("VERSION")
-	if ok{
-		return version
-	}
-	return ""
+	return os.Getenv("VERSION")
 }
 
 
